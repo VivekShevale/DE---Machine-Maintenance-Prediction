@@ -1,101 +1,217 @@
-# Machine Maintenance Prediction System - Frontend
+# Machine Maintenance Prediction System
 
-A comprehensive React + Vite frontend application for AI-powered predictive maintenance, featuring real-time sensor monitoring, failure predictions, and maintenance analytics.
+A full-stack AI-powered predictive maintenance platform with machine learning models for equipment failure prediction and a modern React dashboard for monitoring and analytics.
 
 ## 📋 Table of Contents
 
+- Overview
 - Features
 - Tech Stack
-- Getting Started
 - Project Structure
-- Key Pages
-- Components
-- Installation
-- Development
-- Build & Deployment
-- Configuration
+- Getting Started
+- Backend Setup
+- Frontend Setup
+- Architecture
+- Data Flow
+- ML Models
+- API Documentation
+- Contributing
+
+## 🎯 Overview
+
+This system combines machine learning and real-time monitoring to predict equipment failures before they occur. It leverages historical maintenance data and sensor readings to:
+- Predict machine failures with high accuracy
+- Schedule preventive maintenance
+- Reduce downtime and operational costs
+- Provide actionable insights through an intuitive dashboard
 
 ## ✨ Features
 
-### Dashboard
-- Real-time machine health monitoring
-- Overall Equipment Effectiveness (OEE) metrics
-- Critical alerts and notifications
-- Machine health status table with risk assessment
-- Temperature and vibration trend charts
-- Failure type distribution analysis
+### Backend (Python/ML)
+- **Multiple ML Models**: Logistic Regression, Decision Tree, and more
+- **Data Pipeline**: Automated ETL with cleaning, encoding, and scaling
+- **Balancing**: Handle imbalanced datasets with multiple strategies
+- **Model Persistence**: Save and load trained models
+- **Metrics Tracking**: Comprehensive model evaluation
+- **Modular Architecture**: Easy to extend with new models and preprocessing
 
-### Sensor Data Monitoring
-- Live sensor data streaming (5-second updates)
-- Multi-sensor visualization (Temperature, Vibration, Pressure, RPM, Voltage, Current)
-- Customizable time ranges (1h, 6h, 24h, 7d, 30d)
-- Interactive charts with real-time data
-- CSV export functionality
-- Custom chart creation and management
-- Detailed sensor information and thresholds
-
-### Predictive Analytics
-- Multiple AI model support (Random Forest, XGBoost, LSTM)
-- Failure probability predictions with confidence scores
-- Time-to-failure (TTF) estimations
-- Risk factor analysis using radar charts
-- Model performance metrics and comparison
-- Prediction accuracy tracking over time
-- Report generation and export
-
-### Maintenance Management
-- Maintenance history tracking
-- Preventive, corrective, and predictive maintenance types
-- Technician assignment and tracking
-- Cost analysis and ROI metrics
-- MTBF (Mean Time Between Failures) and MTTR (Mean Time To Repair) KPIs
-- Parts replacement documentation
-
-### Alerts & Notifications
-- Real-time alert system with severity levels
-- Alert acknowledgment and tracking
-- Recommended actions for each alert
-- Email and push notification settings
-- Alert filtering and search capabilities
-
-### System Settings
-- Sensor threshold configuration
-- Notification preferences
-- API key management
-- ML model status monitoring
-- Database and system information
-
-### Reports & Analytics
-- Multiple report types (Summary, Analysis, Financial, Technical)
-- Date range filtering
-- Charts and visualizations
-- Export to PDF/CSV
-- Sharing capabilities
-- Performance metrics and trends
+### Frontend (React)
+- **Real-time Dashboard**: Live machine health monitoring
+- **Sensor Data Visualization**: Interactive charts for sensor readings
+- **Predictive Analytics**: AI-powered failure predictions with confidence scores
+- **Alerts Management**: Real-time notifications and alert handling
+- **Maintenance Tracking**: Historical records and scheduling
+- **Reports Generation**: Analytics and performance reports
+- **System Settings**: Configuration management
+- **Responsive Design**: Works on desktop and tablet devices
 
 ## 🛠 Tech Stack
 
+### Backend
+- **Language**: Python 3.8+
+- **ML Libraries**: Scikit-learn, XGBoost, etc.
+- **Data Processing**: Pandas, NumPy
+- **Model Serialization**: Joblib
+- **Configuration**: YAML/Config files
+
+### Frontend
 - **Framework**: React 19.2.0
 - **Build Tool**: Vite 5.1+
 - **Styling**: Tailwind CSS 4.1+
 - **Routing**: React Router DOM 7.11+
-- **Charts**: Recharts 3.6.0
+- **Visualization**: Recharts 3.6.0
 - **Icons**: Lucide React 0.562.0
-- **Language**: JavaScript (ES6+)
-- **Linting**: ESLint 9.39+
+
+## 📁 Project Structure
+
+```
+DE - Machine Maintenance Prediction/
+├── backend/
+│   ├── data/
+│   │   └── Predictive_Maintenance_dataset.csv    # Training dataset
+│   ├── maintenance_ml/
+│   │   ├── balancing/                             # Data balancing strategies
+│   │   ├── config/                                # Configuration management
+│   │   ├── data/                                  # Data loading utilities
+│   │   ├── models/                                # ML model factory
+│   │   ├── pipeline/                              # Complete ML pipeline
+│   │   ├── preprocessing/                         # Data preprocessing
+│   │   │   ├── cleaning.py                        # Data cleaning
+│   │   │   ├── column_handler.py                  # Column management
+│   │   │   ├── encoding.py                        # Categorical encoding
+│   │   │   └── scaling.py                         # Feature scaling
+│   │   ├── training/                              # Model training
+│   │   └── utils/                                 # Utilities (metrics, I/O)
+│   ├── notebooks/
+│   │   ├── 1_EDA.ipynb                            # Exploratory Data Analysis
+│   │   └── 2_Logistic_Regression.ipynb            # Model training notebook
+│   └── artifacts/
+│       ├── decision_tree_failure_prediction.joblib
+│       └── logistic_regression_failure_prediction.joblib
+│
+└── frontend/
+    ├── src/
+    │   ├── components/
+    │   │   ├── Navbar.jsx
+    │   │   └── Sidebar.jsx
+    │   ├── pages/
+    │   │   ├── Dashboard.jsx
+    │   │   ├── SensorData.jsx
+    │   │   ├── Predictions.jsx
+    │   │   ├── Alerts.jsx
+    │   │   ├── MaintenanceHistory.jsx
+    │   │   ├── Reports.jsx
+    │   │   ├── Settings.jsx
+    │   │   ├── MachineDetails.jsx
+    │   │   └── Login.jsx
+    │   ├── App.jsx
+    │   ├── main.jsx
+    │   └── index.css
+    ├── package.json
+    ├── vite.config.js
+    └── index.html
+```
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
-- Node.js (v16 or higher)
-- npm or yarn package manager
+- **Python**: 3.8 or higher
+- **Node.js**: v16 or higher
+- **npm**: v8 or higher
+- **Git**: For version control
 
-### Installation
+### Quick Start
 
 1. **Clone the repository**
 ```bash
-git clone <repository-url>
+cd "DE - Machine Maintenance Prediction"
+```
+
+2. **Setup Backend** (see Backend Setup)
+3. **Setup Frontend** (see Frontend Setup)
+
+## 🐍 Backend Setup
+
+### Installation
+
+1. **Navigate to backend directory**
+```bash
+cd backend
+```
+
+2. **Create virtual environment**
+```bash
+python -m venv venv
+```
+
+3. **Activate virtual environment**
+```bash
+# Windows
+venv\Scripts\activate
+
+# macOS/Linux
+source venv/bin/activate
+```
+
+4. **Install dependencies**
+```bash
+pip install -r requirements.txt
+```
+
+### Running the Backend
+
+#### Train Models
+```bash
+python -m maintenance_ml.training.trainer
+```
+
+#### Run Jupyter Notebooks
+```bash
+jupyter notebook notebooks/
+```
+
+#### Model Predictions
+```bash
+python -c "from maintenance_ml.models import ModelFactory; model = ModelFactory.load('logistic_regression'); predictions = model.predict(data)"
+```
+
+### Backend Project Structure Details
+
+**`maintenance_ml/config/`**
+- Centralized configuration for paths, model parameters, and thresholds
+
+**`maintenance_ml/data/`**
+- `data_loader.py`: Load and parse CSV datasets
+
+**`maintenance_ml/preprocessing/`**
+- `cleaning.py`: Remove duplicates, handle missing values
+- `encoding.py`: Convert categorical features
+- `scaling.py`: Normalize numerical features
+- `column_handler.py`: Feature selection and management
+
+**`maintenance_ml/balancing/`**
+- Handle imbalanced datasets (SMOTE, undersampling, etc.)
+
+**`maintenance_ml/models/`**
+- `model_factory.py`: Factory pattern for model creation and management
+
+**`maintenance_ml/pipeline/`**
+- `build_pipeline.py`: Complete ML pipeline orchestration
+
+**`maintenance_ml/training/`**
+- `trainer.py`: Model training and validation logic
+
+**`maintenance_ml/utils/`**
+- `metrices.py`: Performance metrics (accuracy, precision, recall, F1)
+- `model_io.py`: Save and load models
+
+## ⚛️ Frontend Setup
+
+### Installation
+
+1. **Navigate to frontend directory**
+```bash
 cd frontend
 ```
 
@@ -104,303 +220,313 @@ cd frontend
 npm install
 ```
 
-3. **Start development server**
-```bash
-npm run dev
-```
-
-The application will be available at `http://localhost:5173`
-
-## 📁 Project Structure
-
-```
-frontend/
-├── src/
-│   ├── components/
-│   │   ├── Navbar.jsx          # Top navigation bar
-│   │   └── Sidebar.jsx         # Side navigation menu
-│   ├── pages/
-│   │   ├── Dashboard.jsx       # Main dashboard
-│   │   ├── SensorData.jsx      # Real-time sensor monitoring
-│   │   ├── Predictions.jsx     # AI predictions and analytics
-│   │   ├── Alerts.jsx          # Alert management
-│   │   ├── MaintenanceHistory.jsx # Maintenance records
-│   │   ├── Reports.jsx         # Reports and analytics
-│   │   ├── Settings.jsx        # System settings
-│   │   ├── MachineDetails.jsx  # Individual machine details
-│   │   └── Login.jsx           # Authentication
-│   ├── App.jsx                 # Main app component
-│   ├── App.css                 # Global styles
-│   ├── index.css               # Tailwind configuration
-│   └── main.jsx                # Entry point
-├── public/
-│   └── vite.svg
-├── package.json
-├── vite.config.js
-├── eslint.config.js
-└── index.html
-```
-
-## 📄 Key Pages
-
-### Dashboard
-Main overview page showing:
-- System-wide health metrics
-- Machine status table with risk levels
-- Upcoming maintenance schedule
-- Temperature and vibration trends
-- Failure distribution pie chart
-- Quick action buttons
-
-### Sensor Data
-Real-time monitoring interface:
-- Live sensor readings and status indicators
-- Multi-sensor trend charts
-- Customizable time range selection
-- Machine-specific data filtering
-- Custom chart creation
-- Data export functionality
-
-### Predictions
-AI-powered failure predictions:
-- Multiple model selection
-- Active predictions list
-- Prediction confidence scores
-- Time-to-failure estimations
-- Risk factor analysis
-- Model performance metrics
-- Report generation
-
-### Alerts
-Alert management system:
-- Real-time alert display
-- Severity-based filtering
-- Alert acknowledgment
-- Recommended actions
-- Alert history
-
-### Maintenance History
-Historical maintenance records:
-- Maintenance events timeline
-- Cost analysis
-- Technician tracking
-- Parts management
-- Performance KPIs (MTBF, MTTR)
-
-### Reports
-Analytics and reporting:
-- Multiple report types
-- Chart visualizations
-- Date range filtering
-- Export capabilities
-- Performance metrics
-
-### Settings
-System configuration:
-- Sensor threshold management
-- Notification preferences
-- API key management
-- System monitoring status
-
-### Machine Details
-Individual machine analysis:
-- Detailed machine specifications
-- Performance charts
-- Maintenance scheduling
-- Edit machine information
-- Export machine data
-
-## 🧩 Components
-
-### Navbar
-- Branding and logo
-- Search functionality
-- User profile menu
-- Alert notifications
-- Quick navigation
-
-### Sidebar
-- Main navigation menu
-- Machine list with status indicators
-- Quick action buttons
-- System status display
-
-## 📦 Dependencies
-
-```json
-{
-  "react": "^19.2.0",
-  "react-dom": "^19.2.0",
-  "react-router-dom": "^7.11.0",
-  "recharts": "^3.6.0",
-  "lucide-react": "^0.562.0",
-  "tailwindcss": "^4.1.18",
-  "@tailwindcss/vite": "^4.1.18"
-}
-```
-
-## 🔧 Development
-
-### Available Scripts
+### Development
 
 ```bash
 # Start development server with HMR
 npm run dev
+```
 
+Server runs at `http://localhost:5173`
+
+### Production Build
+
+```bash
 # Build for production
 npm run build
-
-# Run ESLint
-npm run lint
 
 # Preview production build
 npm run preview
 ```
 
-### Development Features
-
-- **Hot Module Replacement (HMR)**: Instant updates during development
-- **Fast Refresh**: React component updates without losing state
-- **ESLint Integration**: Code quality checks
-- **Tailwind CSS**: Utility-first styling
-
-## 🏗 Build & Deployment
-
-### Production Build
+### Linting
 
 ```bash
-npm run build
-```
+# Run ESLint
+npm run lint
 
-This creates an optimized production build in the `dist/` folder.
-
-### Preview Production Build
-
-```bash
-npm run preview
-```
-
-### Environment Variables
-
-Create a `.env` file for environment-specific configuration:
-
-```env
-VITE_API_URL=http://localhost:8000
-VITE_APP_NAME=Machine Maintenance Prediction
-```
-
-## ⚙️ Configuration
-
-### Tailwind CSS
-
-Configured in index.css with custom utilities:
-- `.mechanical-card` - Card component styling
-- `.status-indicator` - Status badge styling
-- `.mechanical-button` - Button styling
-- `.industrial-input` - Input field styling
-
-### ESLint
-
-Rules configured in eslint.config.js:
-- React best practices
-- React Hooks linting
-- React Refresh compatibility
-- Custom rules for variable naming
-
-### Vite
-
-Configuration in `vite.config.js`:
-- React plugin with Babel refresh
-- Optimized build settings
-
-## 📊 Data Structure
-
-### Machine Data
-```javascript
-{
-  id: 'machine-id',
-  name: 'Machine Name',
-  type: 'CNC',
-  status: 'healthy|warning|critical',
-  health: 92,
-  uptime: 99.5,
-  temperature: 58,
-  vibration: 2.8
-}
-```
-
-### Sensor Reading
-```javascript
-{
-  time: '14:30:45',
-  timestamp: '2024-01-15T14:30:45Z',
-  temperature: 58.5,
-  vibration: 2.8,
-  pressure: 125,
-  rpm: 2900,
-  voltage: 415,
-  current: 45
-}
-```
-
-### Prediction
-```javascript
-{
-  id: 1,
-  machine: 'Machine Name',
-  component: 'Component Name',
-  probability: 87,
-  eta: '48h',
-  priority: 'high|medium|low'
-}
-```
-
-## 🎨 Styling
-
-The project uses Tailwind CSS with a mechanical/industrial theme:
-- Primary colors: Blue (#4f46e5)
-- Secondary colors: Amber, Green, Red for status indicators
-- Border radius: 8-12px for modern appearance
-- Shadows: Subtle elevation for depth
-
-## 🔐 Security Notes
-
-- Authentication handled via Login page
-- API key management in Settings
-- No sensitive data stored in localStorage
-- CORS considerations for API calls
-
-## 🐛 Troubleshooting
-
-### Port Already in Use
-```bash
-npm run dev -- --port 3000
-```
-
-### Clear Node Modules
-```bash
-rm -rf node_modules package-lock.json
-npm install
-```
-
-### ESLint Errors
-```bash
+# Fix linting issues
 npm run lint -- --fix
 ```
 
-## 📝 License
+### Frontend Pages
 
-[Add appropriate license information]
+| Page | Purpose |
+|------|---------|
+| **Login** | Authentication |
+| **Dashboard** | System overview, health metrics, OEE |
+| **SensorData** | Real-time sensor monitoring & visualization |
+| **Predictions** | AI predictions, failure probability, TTF |
+| **Alerts** | Alert management and notifications |
+| **MaintenanceHistory** | Historical records and scheduling |
+| **Reports** | Analytics and report generation |
+| **MachineDetails** | Individual machine analysis |
+| **Settings** | System configuration |
 
-## 👥 Contributors
+## 🏗 Architecture
 
-[Add contributor information]
+### High-Level Architecture
 
-## 📞 Support
+```
+┌─────────────────────────────────────────┐
+│         React Frontend (Vite)           │
+│  Dashboard | Predictions | Alerts       │
+└────────────────┬────────────────────────┘
+                 │ HTTP/REST API
+┌────────────────▼────────────────────────┐
+│       Python Backend (FastAPI/Flask)    │
+│  Routes | Controllers | Business Logic  │
+└────────────────┬────────────────────────┘
+                 │
+┌────────────────▼──────────────────────┐
+│      ML Pipeline & Models             │
+│  Data Processing | Training | Predict │
+└────────────────┬──────────────────────┘
+                 │
+┌────────────────▼──────────────────────┐
+│      Data Layer                       │
+│  CSV Files | Database | Sensors       │
+└───────────────────────────────────────┘
+```
 
-For issues, questions, or suggestions, please contact the development team.
+### Model Factory Pattern
+
+The backend uses the Factory pattern for flexible model management:
+
+```
+ModelFactory
+├── load(model_name) → Model instance
+├── train(model_type, data) → Trained model
+├── predict(model, features) → Predictions
+└── save(model, path)
+```
+
+## 📊 Data Flow
+
+### Training Pipeline
+
+```
+Raw Data (CSV)
+    ↓
+Loading & Exploration
+    ↓
+Cleaning (Missing Values, Duplicates)
+    ↓
+Encoding (Categorical → Numerical)
+    ↓
+Scaling (Normalization)
+    ↓
+Balancing (Handle Imbalance)
+    ↓
+Train/Test Split
+    ↓
+Model Training
+    ↓
+Evaluation (Metrics)
+    ↓
+Model Artifact (Joblib)
+```
+
+### Prediction Pipeline
+
+```
+Live Sensor Data
+    ↓
+Preprocessing (same as training)
+    ↓
+Load Trained Model
+    ↓
+Generate Predictions
+    ↓
+Risk Assessment
+    ↓
+Frontend Dashboard
+```
+
+## 🤖 ML Models
+
+### Available Models
+
+1. **Logistic Regression** (`logistic_regression_failure_prediction.joblib`)
+   - Interpretable linear model
+   - Fast inference
+   - Good baseline
+
+2. **Decision Tree** (`decision_tree_failure_prediction.joblib`)
+   - Non-linear relationships
+   - Feature importance ranking
+   - Easy to explain
+
+3. **Extensible Framework**
+   - Add XGBoost, Random Forest, LSTM, etc.
+   - Ensemble methods support
+   - Hyperparameter tuning
+
+### Dataset
+
+**Source**: `data/Predictive_Maintenance_dataset.csv`
+
+**Features**:
+- Machine operational parameters
+- Environmental conditions
+- Historical maintenance data
+- Sensor readings
+
+**Target**:
+- Failure prediction (binary classification)
+
+### Model Performance
+
+View model metrics in:
+- Notebooks: `notebooks/2_Logistic_Regression.ipynb`
+- Utility functions: `maintenance_ml/utils/metrices.py`
+
+## 📡 API Documentation
+
+*(Add specific API endpoints once backend API is created)*
+
+### Predicted Endpoints Structure
+
+```
+POST /api/predict
+  Request: { features: [...] }
+  Response: { probability: 0.87, ttf: "48h", risk: "high" }
+
+GET /api/models
+  Response: { models: [...] }
+
+POST /api/train
+  Request: { model_type: "logistic_regression", params: {...} }
+  Response: { model_id: "...", status: "training" }
+
+GET /api/sensors/:machine_id
+  Response: { readings: [...] }
+```
+
+## 🔄 Integration Steps
+
+1. **Create Flask/FastAPI Backend**
+   - Expose ML models as REST API
+   - Connect to real sensor data source
+   - Implement user authentication
+
+2. **Connect Frontend to Backend**
+   - Configure API base URL in `.env`
+   - Implement API service layer
+   - Add error handling and loading states
+
+3. **Database Integration**
+   - Store predictions and alerts
+   - Maintain maintenance history
+   - Track model performance
+
+4. **Real-time Updates**
+   - WebSockets for live sensor data
+   - Push notifications for alerts
+   - Live dashboard updates
+
+## 📊 Key Metrics
+
+- **OEE (Overall Equipment Effectiveness)**
+- **MTBF (Mean Time Between Failures)**
+- **MTTR (Mean Time To Repair)**
+- **Prediction Accuracy**
+- **Model Precision/Recall/F1-Score**
+- **False Positive Rate**
+- **Failure Detection Rate**
+
+## 🔐 Security Considerations
+
+- Authentication required for API access
+- API key management in settings
+- Data encryption in transit (HTTPS)
+- Sensitive data not stored in frontend
+- Input validation on backend
+- CORS configuration
+
+## 🐛 Troubleshooting
+
+### Python Dependencies
+```bash
+# Install all requirements
+pip install pandas numpy scikit-learn xgboost joblib
+
+# Check versions
+pip list
+```
+
+### Virtual Environment Issues
+```bash
+# Recreate virtual environment
+deactivate
+rm -rf venv
+python -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+### Frontend Build Issues
+```bash
+# Clear cache and reinstall
+rm -rf node_modules package-lock.json
+npm install
+npm run dev
+```
+
+## 📈 Future Enhancements
+
+- [ ] Time-series models (LSTM, Prophet)
+- [ ] Ensemble methods
+- [ ] Real-time data streaming
+- [ ] Advanced anomaly detection
+- [ ] Mobile application
+- [ ] Multi-language support
+- [ ] Advanced RBAC
+- [ ] Data export features
+- [ ] Historical trend analysis
+- [ ] Custom alert rules
+
+## 🤝 Contributing
+
+1. Create a feature branch
+```bash
+git checkout -b feature/your-feature
+```
+
+2. Make changes and commit
+```bash
+git commit -m "Add your feature"
+```
+
+3. Push to branch
+```bash
+git push origin feature/your-feature
+```
+
+4. Submit a Pull Request
+
+
+## 👥 Team
+
+- Machine Learning Engineer
+- Full-Stack Developer
+
+## 📞 Support & Contact
+
+For issues, questions, or suggestions:
+- Open an issue on the repository
+- Contact the development team
+- Check documentation and notebooks
+
+## 📚 Additional Resources
+
+- [Scikit-learn Documentation](https://scikit-learn.org/)
+- [React Documentation](https://react.dev/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Jupyter Notebooks](https://jupyter.org/)
 
 ---
 
-**Last Updated**: January 2024  
-**Version**: 0.0.0
+**Project Version**: 0.0.0  
+**Last Updated**: December 29, 2025  
+**Status**: In Development
