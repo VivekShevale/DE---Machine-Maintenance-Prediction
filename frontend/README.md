@@ -1,4 +1,4 @@
-Collecting workspace information# Machine Maintenance Prediction System - Frontend
+# Machine Maintenance Prediction System - Frontend
 
 A comprehensive React + Vite frontend application for AI-powered predictive maintenance, featuring real-time sensor monitoring, failure predictions, and maintenance analytics.
 
